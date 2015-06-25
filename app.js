@@ -1,4 +1,4 @@
-require('node-jsx').install()
+require('node-jsx').install({extension: '.jsx'})
 
 var express = require('express')
   , app = express()
