@@ -4,18 +4,18 @@ var isNode = typeof module !== 'undefined' && module.exports
 var Card = React.createClass({
   render: function(){
     return(
-      <div>
-        <h3>{this.props.bootcamp.name}</h3>
+      <div className='col-xs-4 col-xs-offset-4 bootcamp'>
+        <h3>{this.props.index + 1}. {this.props.bootcamp.name}</h3>
         <h3>{this.props.bootcamp.address}</h3>
-        <h3>{this.props.bootcamp.imageurl}</h3>
-        <h3>{this.props.bootcamp.price}</h3>
+        <img className='logo' src={this.props.bootcamp.imageUrl}></img>
+        <h3>${this.props.bootcamp.price}</h3>
         <h3>{this.props.bootcamp.languages}</h3>
       </div>
     )
   }
 })
 
-var HelloMessage = React.createClass({
+var Main = React.createClass({
   getInitialState: function () {
     return {bootcamps: []}
   },
@@ -38,11 +38,10 @@ var HelloMessage = React.createClass({
   },
 
   render: function() {
-    console.log('ksjdjfhksahdf', this.state.bootcamps);
-    var bootCampDivs = this.state.bootcamps.map(function(e){
-      return <Card bootcamp={e}/>
+    var bootCampDivs = this.state.bootcamps.map(function(e, i){
+      console.log(e);
+      return <Card bootcamp={e} index={i} />
     })
-    console.log(bootCampDivs)
     return (
       <div>
         {bootCampDivs}
@@ -52,7 +51,7 @@ var HelloMessage = React.createClass({
 })
 
 if (isNode) {
-  exports.HelloMessage = HelloMessage
+  exports.Main = Main
 } else {
-  React.render(<HelloMessage />, document.getElementById('react-root'))
+  React.render(<Main />, document.getElementById('react-root'))
 }

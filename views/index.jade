@@ -1,12 +1,14 @@
 doctype
 html
   head
-    title React Server Side Rendering Example
+    title React Server Side
   body
     div(id='react-root')!= react
-
+    
     script(src='http://fb.me/react-with-addons-0.13.1.js')
     script(src='http://fb.me/JSXTransformer-0.13.1.js')
     script(src='http://code.jquery.com/jquery-2.1.3.js')
-
     script(src='/components.jsx', type='text/jsx')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    link(rel="stylesheet" href="/styles.css")

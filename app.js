@@ -5,7 +5,7 @@ var express = require('express')
   , React = require('react/addons')
   , components = require('./public/components.jsx')
 
-var HelloMessage = React.createFactory(components.HelloMessage)
+var Main = React.createFactory(components.Main)
 
 
 app.engine('jade', require('jade').__express)
@@ -15,7 +15,7 @@ app.use(express.static(__dirname + '/public'))
 
 app.get('/', function(req, res){
   res.render('index', {
-    react: React.renderToString(HelloMessage({name: "John"}))
+    react: React.renderToString(Main())
   })
 })
 
