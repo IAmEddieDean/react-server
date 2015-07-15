@@ -19,10 +19,6 @@ app.get('/', function(req, res){
   })
 })
 
-app.get('/name', function(req, res){
-  res.send("Paul, " + new Date().toString())
-})
-
 app.listen(3000, function() {
   console.log('-------------------------')
   console.log('Listening on port 3000...')

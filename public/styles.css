@@ -1,8 +1,13 @@
-
+body{
+  background-color: Beige;
+}
 .bootcamp{
-  background-color: pink;
+  background-color: white;
   text-align: center;
-  border: 5px dashed black;
+  border: 1px solid black;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px black;
+  margin-top: 2em;
 }
 
 .logo{

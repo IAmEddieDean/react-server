@@ -1,11 +1,22 @@
-var isNode = typeof module !== 'undefined' && module.exports
-  , React = isNode ? require('react/addons') : window.React
+var isNode = typeof module !== 'undefined' && module.exports;
+var React = isNode ? require('react/addons') : window.React;
+// var Router = require('react-router');
+//   var Route = Router.Route;
+//
+// // declare our routes and their hierarchy
+// var routes = (
+//   <Route handler={App}>
+//     <Route path="list" handler={List}/>
+//     <Route path="test" handler={Test}/>
+//   </Route>
+// );
 
 var Card = React.createClass({
+
   render: function(){
     return(
       <div className='col-xs-4 col-xs-offset-4 bootcamp'>
-        <h3>{this.props.index + 1}. {this.props.bootcamp.name}</h3>
+        <h3>{this.props.index + 1}. <a href='#'>{this.props.bootcamp.name}</a></h3>
         <h3>{this.props.bootcamp.address}</h3>
         <img className='logo' src={this.props.bootcamp.imageUrl}></img>
         <h3>${this.props.bootcamp.price}</h3>
@@ -34,7 +45,11 @@ var Main = React.createClass({
   },
 
   handleClick: function () {
-    alert('You clicked!')
+    var bootcamps = this.state.bootcamps.sort(function(a,b){
+      console.log(parseInt(a.price));
+      return parseInt(a.price) - parseInt(b.price);
+    });
+    this.setState({bootcamps: bootcamps});
   },
 
   render: function() {
@@ -44,6 +59,7 @@ var Main = React.createClass({
     })
     return (
       <div>
+        <button onClick={this.handleClick}>Sort By Price</button>
         {bootCampDivs}
       </div>
     )
