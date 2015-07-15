@@ -55,7 +55,6 @@ var Main = React.createClass({
 
   handleClick: function () {
     var bootcamps = this.state.bootcamps.sort(function(a,b){
-      console.log(parseInt(a.price));
       return parseInt(a.price) - parseInt(b.price);
     });
     this.setState({bootcamps: bootcamps});
@@ -68,8 +67,12 @@ var Main = React.createClass({
     })
     return (
       <div>
+        <hr />
+        <button className='col-xs-4 btn btn-success' onClick={this.handleClick}>Sort By Price</button>
+        <button className='col-xs-4 btn btn-warning' onClick={this.handleClick}>Sort By Location</button>
+        <button className='col-xs-4 btn btn-default' onClick={this.handleClick}>Sort By Name</button>
+        <hr />
         <input className='col-xs-2 col-xs-offset-5' ref='searchBar' placeholder='search...' onChange={this.filterCamps}></input>
-        <button className='col-xs-2 col-xs-offset-5 btn btn-success' onClick={this.handleClick}>Sort By Price</button>
         {bootCampDivs}
       </div>
     )
