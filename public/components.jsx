@@ -15,7 +15,7 @@ var Card = React.createClass({
 
   render: function(){
     return(
-      <div className='col-xs-4 col-xs-offset-4 bootcamp'>
+      <div className='col-xs-4 col-xs-offset-2 bootcamp'>
         <h3>{this.props.index + 1}. <a href='#'>{this.props.bootcamp.name}</a></h3>
         <h3>{this.props.bootcamp.address}</h3>
         <img className='logo' src={this.props.bootcamp.imageUrl}></img>
@@ -53,7 +53,7 @@ var Main = React.createClass({
     this.setState({bootcamps: bootcamps});
   },
 
-  handleClick: function () {
+  sortPrice: function() {
     var bootcamps = this.state.bootcamps.sort(function(a,b){
       return parseInt(a.price) - parseInt(b.price);
     });
@@ -68,9 +68,9 @@ var Main = React.createClass({
     return (
       <div>
         <hr />
-        <button className='col-xs-4 btn btn-success' onClick={this.handleClick}>Sort By Price</button>
-        <button className='col-xs-4 btn btn-warning' onClick={this.handleClick}>Sort By Location</button>
-        <button className='col-xs-4 btn btn-default' onClick={this.handleClick}>Sort By Name</button>
+        <button className='col-xs-4 btn btn-success' onClick={this.sortPrice}>Sort By Price</button>
+        <button className='col-xs-4 btn btn-warning'>Sort By Location</button>
+        <button className='col-xs-4 btn btn-default'>Sort By Name</button>
         <hr />
         <input className='col-xs-2 col-xs-offset-5' ref='searchBar' placeholder='search...' onChange={this.filterCamps}></input>
         {bootCampDivs}
