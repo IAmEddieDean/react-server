@@ -27,8 +27,8 @@ var Card = React.createClass({
 })
 
 var Main = React.createClass({
-  getInitialState: function () {
-    return {bootcamps: []}
+  getInitialState: function() {
+    return {bootcamps: [], ogBootcamps: []}
   },
 
   loadServerData: function(){
@@ -36,12 +36,21 @@ var Main = React.createClass({
     var app = this;
     $.get('http://bootcampapi.herokuapp.com/bootcamps', function(result) {
       bootcamps = result;
-      app.setState({bootcamps: bootcamps});
+      app.setState({bootcamps: bootcamps, ogBootcamps: bootcamps});
     });
   },
 
   componentDidMount: function () {
     this.loadServerData();
+  },
+
+  filterCamps: function(){
+    var input = React.findDOMNode(this.refs.searchBar);
+    var bootcamps = this.state.bootcamps.filter(function(e, i){
+      return e.name.toLowerCase().indexOf(input.value) !== -1;
+    })
+    bootcamps = !input.value ? this.state.ogBootcamps : bootcamps;
+    this.setState({bootcamps: bootcamps});
   },
 
   handleClick: function () {
@@ -59,7 +68,8 @@ var Main = React.createClass({
     })
     return (
       <div>
-        <button onClick={this.handleClick}>Sort By Price</button>
+        <input className='col-xs-2 col-xs-offset-5' ref='searchBar' placeholder='search...' onChange={this.filterCamps}></input>
+        <button className='col-xs-2 col-xs-offset-5 btn btn-success' onClick={this.handleClick}>Sort By Price</button>
         {bootCampDivs}
       </div>
     )
