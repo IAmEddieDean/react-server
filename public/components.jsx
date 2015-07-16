@@ -40,14 +40,19 @@ var Main = React.createClass({
     });
   },
 
-  componentDidMount: function () {
+  componentDidMount: function() {
     this.loadServerData();
   },
 
   filterCamps: function(){
     var input = React.findDOMNode(this.refs.searchBar);
     var bootcamps = this.state.bootcamps.filter(function(e, i){
-      return e.name.toLowerCase().indexOf(input.value) !== -1;
+      var languageString = '';
+      e.languages.map(function(l){
+        languageString += l.toLowerCase().trim();
+      });
+      console.log(languageString);
+      return e.name.toLowerCase().indexOf(input.value) !== -1 || languageString.indexOf(input.value) !== -1;
     })
     bootcamps = !input.value ? this.state.ogBootcamps : bootcamps;
     this.setState({bootcamps: bootcamps});
@@ -62,7 +67,6 @@ var Main = React.createClass({
 
   render: function() {
     var bootCampDivs = this.state.bootcamps.map(function(e, i){
-      console.log(e);
       return <Card bootcamp={e} index={i} />
     })
     return (
